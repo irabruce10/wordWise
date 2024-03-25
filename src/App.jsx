@@ -11,17 +11,17 @@ import { useEffect, useState } from "react";
 const Base_Url = "http://localhost:9000";
 
 function App() {
-  const [cities, setCities] = useState([]);
+  const [cities, setCities] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(function () {
     async function fetchCities() {
       try {
         setIsLoading(true);
-        const res = await `${Base_Url}/cities`;
+        const res = await fetch(`${Base_Url}/cities`);
         const data = await res.json();
         setCities(data);
-      } catch (error) {
+      } catch {
         alert("There was an Arror ...");
       } finally {
         setIsLoading(false);
